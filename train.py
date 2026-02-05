@@ -34,6 +34,7 @@ def train(dataloader, model, loss_fn, optimizer):
 
         # Compute prediction error
         pred = model(X)
+        pred = torch.reshape(pred, (10, 1, 32, 32))
         loss = loss_fn(pred, y)
 
         # Backpropagation
