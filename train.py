@@ -3,7 +3,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 from ExperimentData import ExperimentDataset
 import torchvision.transforms as transforms
-from model import NeuralNetwork
+from unet_model import UNet
 
 data = ExperimentDataset(
 "olddata\\tiny\\rgb",
@@ -20,7 +20,7 @@ for X, y in loader:
 device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
 print(f"Using {device} device")
 
-model = NeuralNetwork().to(device)
+model = UNet(3, 1).to(device)
 print(model)
 
 loss_fn = nn.BCEWithLogitsLoss()

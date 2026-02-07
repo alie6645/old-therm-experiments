@@ -26,4 +26,4 @@ class ExperimentDataset(Dataset):
         div = 1.0/255.0
         rgbimage = rgbimage.float()
         label = label.float()
-        return rgbimage.apply_(lambda num: num*div), label.apply_(lambda num: num*div)
+        return rgbimage, label.apply_(lambda num: num*div)
