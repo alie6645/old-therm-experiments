@@ -11,7 +11,7 @@ class NeuralNetwork(nn.Module):
             nn.ReLU(),
             nn.Linear(32*32*3, 32*32*3),
             nn.ReLU(),
-            nn.Linear(32*32*3, 32*32*1)
+            nn.Linear(32*32*3, 32*32*1),
         )
 
     def forward(self, x):

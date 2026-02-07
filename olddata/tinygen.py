@@ -1,8 +1,8 @@
 import cv2
 import os
 
-for i in range (1443, 2443):
-    num = i - 1443
+for i in range (2443, 2543):
+    num = i - 2443
     name = str(i) + ".jpg"
     rgbpath = os.path.join("dataset_1-6-2024", "class1", name)
     thermpath = os.path.join("dataset_1-6-2024", "class2", name)
@@ -11,7 +11,7 @@ for i in range (1443, 2443):
     rgb = cv2.resize(rgb, (32, 32), interpolation=cv2.INTER_AREA)
     therm = cv2.resize(therm, (32, 32), interpolation=cv2.INTER_AREA)
     name = str(num) + ".jpg"
-    rgbpath = os.path.join("tiny", "rgb", name)
-    thermpath = os.path.join("tiny", "therm", name)
+    rgbpath = os.path.join("tiny", "test", "rgb", name)
+    thermpath = os.path.join("tiny", "test", "therm", name)
     cv2.imwrite(rgbpath, rgb)
     cv2.imwrite(thermpath, therm)

@@ -5,8 +5,8 @@ from ExperimentData import ExperimentDataset
 import cv2
 
 test_data = ExperimentDataset(
-"olddata\\tiny\\test\\rgb",
-"olddata\\tiny\\test\\therm",
+"olddata\\tiny\\rgb",
+"olddata\\tiny\\therm",
 len=100
 )
 
@@ -33,5 +33,6 @@ cv2.imshow("therm", therm[0].numpy())
 cv2.waitKey(0)
 cv2.imshow("pred", pred[0].detach().numpy())
 cv2.waitKey(0)
+print(therm[0])
 print(pred[0])
 

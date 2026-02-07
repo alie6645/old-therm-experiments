@@ -9,8 +9,8 @@ data = ExperimentDataset(
 "olddata\\tiny\\rgb",
 "olddata\\tiny\\therm",
 )
-
-loader = DataLoader(data, batch_size=10, shuffle=True)
+batchsize=50
+loader = DataLoader(data, batch_size=batchsize, shuffle=True)
 
 for X, y in loader:
     print(f"Shape of X [N, C, H, W]: {X.shape}")
@@ -23,7 +23,7 @@ print(f"Using {device} device")
 model = NeuralNetwork().to(device)
 print(model)
 
-loss_fn = nn.MSELoss()
+loss_fn = nn.BCEWithLogitsLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
 def train(dataloader, model, loss_fn, optimizer):
@@ -34,7 +34,7 @@ def train(dataloader, model, loss_fn, optimizer):
 
         # Compute prediction error
         pred = model(X)
-        pred = torch.reshape(pred, (10, 1, 32, 32))
+        pred = torch.reshape(pred, (batchsize, 1, 32, 32))
         loss = loss_fn(pred, y)
 
         # Backpropagation
@@ -42,11 +42,11 @@ def train(dataloader, model, loss_fn, optimizer):
         optimizer.step()
         optimizer.zero_grad()
 
-        if batch % 100 == 0:
+        if batch % 100 == 0:  
             loss, current = loss.item(), (batch + 1) * len(X)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
-epochs = 5
+epochs = 100
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
     train(loader, model, loss_fn, optimizer)
