@@ -17,6 +17,7 @@ device = torch.accelerator.current_accelerator().type if torch.accelerator.is_av
 print(f"Using {device} device")
 
 model = UNet(3, 1).to(device)
+model.load_state_dict(torch.load("model.pth", weights_only=True))
 print(model)
 
 torch.no_grad()
